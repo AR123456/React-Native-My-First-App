@@ -3,13 +3,13 @@ import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 const ComponentsScreen = () => {
-  const greeting = "Hi There!";
-  const anotherGreeting = <Text>Hello world </Text>;
-  // make sure the (  on same line as return.  You could also have no (  but the <View> would need to be on same line as return
+  const myName = "Anne";
+  const anotherGreeting = <Text style={styles.helloWorld}>Hello world </Text>;
+
   return (
     <View>
-      <Text style={styles.textStyle}>This is the components screen</Text>
-      <Text>{greeting} </Text>
+      <Text style={styles.textStyle}>Gettin Started with React Native </Text>
+      <Text>My name is {myName} </Text>
       {anotherGreeting}
     </View>
   );
@@ -18,6 +18,9 @@ const ComponentsScreen = () => {
 const styles = StyleSheet.create({
   textStyle: {
     fontSize: 30,
+  },
+  helloWorld: {
+    fontSize: 50,
   },
 });
 export default ComponentsScreen;
