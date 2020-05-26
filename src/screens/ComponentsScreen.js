@@ -1,11 +1,18 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+// import View
+import { Text, StyleSheet, View } from "react-native";
 
 const ComponentsScreen = () => {
-  // using StyleSheet import for styleing
-  return <Text style={styles.textStyle}>This is the components screen</Text>;
-  // can also use regular in line styling but if error it gives poor feedback
-  //   return <Text style={{ fontSize: 30 }}>This is the components screen</Text>;
+  const greeting = "Hi There!";
+  const anotherGreeting = <Text>Hello world </Text>;
+  return (
+    <View>
+      {/* make sure there is no semicolin at the end of this div */}
+      <Text style={styles.textStyle}>This is the components screen</Text>
+      <Text>{greeting} </Text>
+      {anotherGreeting}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
