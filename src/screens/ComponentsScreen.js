@@ -5,9 +5,9 @@ import { Text, StyleSheet, View } from "react-native";
 const ComponentsScreen = () => {
   const greeting = "Hi There!";
   const anotherGreeting = <Text>Hello world </Text>;
+  // make sure the (  on same line as return.  You could also have no (  but the <View> would need to be on same line as return
   return (
     <View>
-      {/* make sure there is no semicolin at the end of this div */}
       <Text style={styles.textStyle}>This is the components screen</Text>
       <Text>{greeting} </Text>
       {anotherGreeting}
