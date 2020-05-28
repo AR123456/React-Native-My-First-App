@@ -1,23 +1,26 @@
 import React from "react";
-// importing view and button - view to wrap text element- react needs this
-// and button put a button on page
-import { Text, StyleSheet, View, Button } from "react-native";
 
-const HomeScreen = () => {
+import { Text, StyleSheet, View, Button, TouchableOpacity } from "react-native";
+// passing props  - props are alway the fist argument to the function
+const HomeScreen = (props) => {
+  // this is coming from createStackNavigator
+  // console.log(props.navigation);
+  // navigate is a funcion in the props that we can use to change hte content that
+  // is visible on screen
+  // call with a string that matches the route name of  is defined in app.js
   return (
     <View>
       <Text style={styles.text}>Hi there ! </Text>
-      {/* the title prop on the Button primative element is one 
-      of very few exceptions to where we are not using {} to encase 
-      the value  here it is just a string with the double "". 
-      then add the onPress prop and pass in a function
-      */}
       <Button
-        // this console log will appear in the terminal window that is
-        //running the React Native package
-        onPress={() => console.log("button pressed")}
+        onPress={() => props.navigation.navigate("Components")}
         title="Go to Components Demo"
       />
+
+      <TouchableOpacity
+        onPress={() => console.log("Touchable Opacity pressed")}
+      >
+        <Text>Go to list demo</Text>
+      </TouchableOpacity>
     </View>
   );
 };
