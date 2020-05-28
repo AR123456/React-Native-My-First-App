@@ -10,6 +10,10 @@ const navigator = createStackNavigator(
     List: ListScreen,
   },
   // will eventualy be able to change screens
+  // the initialRouteName: determines which screen is visible when the application first starts
+  //looking for a better way to show
+  // need to show the buttons and devise how to detect when tapped, then how to navigate to
+  // the screen represented by the tap
   {
     initialRouteName: "List",
     defaultNavigationOptions: {
