@@ -11,9 +11,24 @@ const ListScreen = () => {
   // an element.
   ////////////////////////////////
   // createing an array of objects
+  // 2 ways to implement key property
+  // add a key property to the object - it must be a string, must be consistent betwee renders
+  // and it must be unique compared to all other objects inside array of data.
+  // const friends = [
+  //   { name: "Friend #1", key: "1" },
+  //   { name: "Friend #2", key: "2" },
+  //   { name: "Friend #4", key: "4" },
+  //   { name: "Friend #5", key: "5" },
+  //   { name: "Friend #6", key: "6" },
+  //   { name: "Friend #7", key: "7" },
+  //   { name: "Friend #8", key: "8" },
+  //   { name: "Friend #9", key: "9" },
+  // ];
+  // method nubmer 2 is on the flat list component itself using keyExtractor
   const friends = [
     { name: "Friend #1" },
     { name: "Friend #2" },
+    { name: "Friend #3" },
     { name: "Friend #4" },
     { name: "Friend #5" },
     { name: "Friend #6" },
@@ -24,19 +39,16 @@ const ListScreen = () => {
   // pass in prop of data  and renderItem prop
   return (
     <FlatList
+      // key extractor called with single argument , call for every object
+      // in array that it inside this function
+      // inspect object and return the key property to use for it.
+      // defining at runtime
+      keyExtractor={(friend) => friend.name}
       data={friends}
-      // the element argument is not exactly like the object
-      //the elemet argument has properties on it
-      // item property of friend object  and an index property
-      //large object that describes a lot of inof about the element
-      //trying to render.
-      // pull off the "item" property which is hte actual object we have inside
-      //array
-      // can use destructuring for this element.item
-      //    rednerItem= {(element)=>{}}
       // The Key allows RN to tie some definition of an object of data data
       // with an actual element that appears on the screen . Performace optimization
       // when making updates to list
+
       renderItem={({ item }) => {
         return <Text>{item.name}</Text>;
       }}
@@ -45,4 +57,3 @@ const ListScreen = () => {
 };
 const styles = StyleSheet.create({});
 export default ListScreen;
-
