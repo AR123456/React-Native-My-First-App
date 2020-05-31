@@ -16,10 +16,6 @@ const ListScreen = () => {
 
   return (
     <FlatList
-      // // to determine if scoll is horizontal or veritcal
-      // horizontal={true}
-      // // will hide the horizontal scroll bar if desired
-      // showsHorizontalScrollIndicator={false}
       keyExtractor={(friend) => friend.name}
       data={friends}
       renderItem={({ item }) => {
