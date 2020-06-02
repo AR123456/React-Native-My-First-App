@@ -1,14 +1,17 @@
 import React from "react";
 
 import { View, Text, StyleSheet, Image } from "react-native";
-import { startAsync } from "expo/build/AR";
 
-const ImageDetail = ({ imageSource, title, score }) => {
+const ImageDetail = (props) => {
+  console.log(props);
   return (
     <View>
-      <Image source={imageSource} />
-      <Text>{title}</Text>
-      <Text>Image score - {score}</Text>
+      {/* in react native this is not src it is source
+      provide relative path th image 
+      import Image to display 
+      */}
+      <Image source={require("../../assets/beach.jpg")} />
+      <Text>{props.title}</Text>
     </View>
   );
 };
