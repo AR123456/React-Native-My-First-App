@@ -10,7 +10,9 @@ const ImageDetail = (props) => {
       provide relative path th image 
       import Image to display 
       */}
-      <Image source={require("../../assets/beach.jpg")} />
+      {/* <Image source={require("../../assets/beach.jpg")} /> */}
+      {/* now use props */}
+      <Image source={props.imageSource} />
       <Text>{props.title}</Text>
     </View>
   );
