@@ -1,9 +1,10 @@
 import React from "react";
 
 import { View, Text, StyleSheet, Image } from "react-native";
-
-const ImageDetail = (props) => {
-  console.log(props);
+import { startAsync } from "expo/build/AR";
+// to destrucutuer
+// const ImageDetail = (props) => {
+const ImageDetail = ({ imageSource, title, score }) => {
   return (
     <View>
       {/* in react native this is not src it is source
@@ -12,8 +13,9 @@ const ImageDetail = (props) => {
       */}
       {/* <Image source={require("../../assets/beach.jpg")} /> */}
       {/* now use props */}
-      <Image source={props.imageSource} />
-      <Text>{props.title}</Text>
+      <Image source={imageSource} />
+      <Text>{title}</Text>
+      <Text>Image score - {score}</Text>
     </View>
   );
 };
