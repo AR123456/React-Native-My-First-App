@@ -1,7 +1,6 @@
 import React from "react";
 
 import { View, Text, StyleSheet, Image } from "react-native";
-import { startAsync } from "expo/build/AR";
 
 const ImageDetail = ({ imageSource, title, score }) => {
   return (
