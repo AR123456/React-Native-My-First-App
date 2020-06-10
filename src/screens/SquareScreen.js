@@ -1,9 +1,9 @@
-//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15706682#overview
-
-// https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15706684#overview
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ColorCounter from "../components/ColorCounter";
+// the all caps here signifys to other engineers that this is a configuration
+// option, that it is not a prop  .
+const COLOR_INCREMENT = 35;
 
 const SquareScreen = () => {
   // initialize state values here in square screen then pass callback function
@@ -11,7 +11,7 @@ const SquareScreen = () => {
   const [red, setRed] = useState(0);
   const [green, setGreen] = useState(0);
   const [blue, setBlue] = useState(0);
-  console.log(red);
+
   return (
     <View>
       <Text>Square screen </Text>
@@ -19,14 +19,33 @@ const SquareScreen = () => {
        in our app the child component ColorCounter needs to chagne state
        values for R, G, B - so pass the callback function as a prop
       */}
-      {/* made up prop name onIncrease and onDecrease */}
+
       <ColorCounter
-        onIncrease={() => setRed(red + 1)}
-        onDecrease={() => setRed(red - 1)}
+        onIncrease={() => setRed(red + COLOR_INCREMENT)}
+        onDecrease={() => setRed(red - COLOR_INCREMENT)}
         color="Red"
       />
-      <ColorCounter color="Blue" />
-      <ColorCounter color="Green" />
+      <ColorCounter
+        onIncrease={() => setBlue(blue + COLOR_INCREMENT)}
+        onDecrease={() => setBlue(blue - COLOR_INCREMENT)}
+        color="Blue"
+      />
+      <ColorCounter
+        onIncrease={() => setGreen(green + COLOR_INCREMENT)}
+        onDecrease={() => setGreen(green - COLOR_INCREMENT)}
+        color="Green"
+      />
+      {/* adding a new view object to show color box 
+      passing the style object here so one set of {} to say this is JS
+      the other {} to say this is an object literal
+      */}
+      <View
+        style={{
+          height: 150,
+          width: 150,
+          backgroundColor: `rgb(${red}, ${green}, ${blue})`,
+        }}
+      />
     </View>
   );
 };
