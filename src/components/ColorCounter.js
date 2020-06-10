@@ -1,12 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-
-const ColorCounter = ({ color }) => {
+// wire the callback to the buttons, the call back functions onIncrease
+//and onDecrease are now props. Pull them off of the props object like we did color
+// what we are really passing is the ability to run the setter
+const ColorCounter = ({ color, onIncrease, onDecrease }) => {
   return (
     <View>
       <Text>{color}</Text>
-      <Button title={`Increase ${color}`}></Button>
-      <Button title={`Decrease ${color}`}></Button>
+      {/* onPress call the onIncrease or onDecrease function 
+      what we are really passing is the ability to run the setter 
+      now the child is changing the value of the state variable
+      */}
+      <Button onPress={() => onIncrease()} title={`Increase ${color}`}></Button>
+      <Button onPress={() => onDecrease()} title={`Decrease ${color}`}></Button>
     </View>
   );
 };
