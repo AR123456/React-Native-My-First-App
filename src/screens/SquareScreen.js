@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ColorCounter from "../components/ColorCounter";
-// the all caps here signifys to other engineers that this is a configuration
-// option, that it is not a prop  .
+
 const COLOR_INCREMENT = 35;
 
 const SquareScreen = () => {
-  // initialize state values here in square screen then pass callback function
-  // to ColorCounter as a prop so that ColorCounter can modify the state values.
   const [red, setRed] = useState(0);
   const [green, setGreen] = useState(0);
   const [blue, setBlue] = useState(0);
 
+  // helper function to stop increase beyond 256 or decrease below 0
+  const setColor = (color, change) => {
+    //color = red , green or blue
+    // change is = the amount of COLOR_INCREMENT
+    if (color === "red") {
+      if (red + change > 255 || red + change < 0) {
+        return;
+      } else {
+        setRed(red + change);
+      }
+    }
+  };
+
   return (
     <View>
       <Text>Square screen </Text>
-      {/* give ColorCounter the ability to change the state values 
-       in our app the child component ColorCounter needs to chagne state
-       values for R, G, B - so pass the callback function as a prop
-      */}
 
       <ColorCounter
-        onIncrease={() => setRed(red + COLOR_INCREMENT)}
-        onDecrease={() => setRed(red - COLOR_INCREMENT)}
+        // onIncrease={() => setRed(red + COLOR_INCREMENT)}
+        // onDecrease={() => setRed(red - COLOR_INCREMENT)}
+        //  change over to use of setColor helper
+        onIncrease={() => setColor("red", COLOR_INCREMENT)}
+        onDecrease={() => setColor("red", -1 * COLOR_INCREMENT)}
         color="Red"
       />
       <ColorCounter
@@ -35,10 +44,7 @@ const SquareScreen = () => {
         onDecrease={() => setGreen(green - COLOR_INCREMENT)}
         color="Green"
       />
-      {/* adding a new view object to show color box 
-      passing the style object here so one set of {} to say this is JS
-      the other {} to say this is an object literal
-      */}
+
       <View
         style={{
           height: 150,
