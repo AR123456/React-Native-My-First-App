@@ -1,73 +1,64 @@
-//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15706732#questions
-// changing code to use community conventions
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ColorCounter from "../components/ColorCounter";
 
 const COLOR_INCREMENT = 35;
-// community conventions related to the action object in the reducer
-// they are just conventions so can be broken but others may have difficluty understanding code
-/////// what we did
-// state ==={red:number,green:number,blue:number}
-// action === {colorToChange:"red"||"green"||"blue", amount:15 || -15}
-////// changing to use community convention
-//action ===  { type: "change_red" || "change_green" || "change_blue", payload: 15 || -15 };
-
-//
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "change_red":
-      return state.red + action.payload > 255 || state.red + action.payload < 0
-        ? state
-        : { ...state, red: state.red + action.payload };
-
-    case "change_green":
-      return state.green + action.payload > 255 ||
-        state.green + action.payload < 0
-        ? state
-        : { ...state, green: state.green + action.payload };
-    case "change_blue":
-      return state.blue + action.payload > 255 ||
-        state.blue + action.payload < 0
-        ? state
-        : { ...state, blue: state.blue + action.payload };
-    default:
-      return state;
-  }
-};
 
 const SquareScreen = () => {
-  const [state, dispatch] = useReducer(reducer, { red: 0, green: 0, blue: 0 });
-  const { red, green, blue } = state;
+  const [red, setRed] = useState(0);
+  const [green, setGreen] = useState(0);
+  const [blue, setBlue] = useState(0);
+
+  // helper function to stop increase beyond 256 or decrease below 0
+  const setColor = (color, change) => {
+    //color = red , green or blue
+    // change is = the amount of COLOR_INCREMENT
+    // changing this over to a switch
+    switch (color) {
+      case "red":
+        // changing to turnary
+        // if (red + change > 255 || red + change < 0) {
+        //   return;
+        // } else {
+        //   setRed(red + change);
+        // }
+        red + change > 255 || red + change < 0 ? null : setRed(red + change);
+        return;
+      case "green":
+        green + change > 255 || green + change < 0
+          ? null
+          : setGreen(green + change);
+        return;
+      case "blue":
+        blue + change > 255 || blue + change < 0
+          ? null
+          : setBlue(blue + change);
+        return;
+      default:
+        return;
+    }
+  };
+
   return (
     <View>
       <Text>Square screen </Text>
 
       <ColorCounter
-        onIncrease={() =>
-          dispatch({ type: "change_red", payload: COLOR_INCREMENT })
-        }
-        onDecrease={() =>
-          dispatch({ type: "change_red", payload: -1 * COLOR_INCREMENT })
-        }
+        // onIncrease={() => setRed(red + COLOR_INCREMENT)}
+        // onDecrease={() => setRed(red - COLOR_INCREMENT)}
+        //  change over to use of setColor helper
+        onIncrease={() => setColor("red", COLOR_INCREMENT)}
+        onDecrease={() => setColor("red", -1 * COLOR_INCREMENT)}
         color="Red"
       />
       <ColorCounter
-        onIncrease={() =>
-          dispatch({ type: "change_blue", payload: COLOR_INCREMENT })
-        }
-        onDecrease={() =>
-          dispatch({ type: "change_blue", payload: -1 * COLOR_INCREMENT })
-        }
+        onIncrease={() => setColor("blue", COLOR_INCREMENT)}
+        onDecrease={() => setColor("blue", -1 * COLOR_INCREMENT)}
         color="Blue"
       />
       <ColorCounter
-        onIncrease={() =>
-          dispatch({ type: "change_green", payload: COLOR_INCREMENT })
-        }
-        onDecrease={() =>
-          dispatch({ type: "change_green", payload: -1 * COLOR_INCREMENT })
-        }
+        onIncrease={() => setColor("green", COLOR_INCREMENT)}
+        onDecrease={() => setColor("green", -1 * COLOR_INCREMENT)}
         color="Green"
       />
 
