@@ -1,11 +1,12 @@
-//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15706772#questions
-
+//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15706776#questions
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
 const TextScreen = () => {
+  const [name, setName] = useState("");
   return (
     <View>
+      <Text>Enter Name:</Text>
       {/* in react don't want the parent reaching into child element, 
       instead if we ever want to communicate data from child up to parent 
       need to use callback system where we pass down a prop that is a callback function 
@@ -17,10 +18,14 @@ const TextScreen = () => {
         and pass in 2 props value and the onChangeText callback function
       */}
       <TextInput
+        //  This is the TextInput pattern in react-naive
         style={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
+        value={name}
+        onChangeText={(newValue) => setName(newValue)}
       />
+      <Text>My name is {name}</Text>
     </View>
   );
 };
