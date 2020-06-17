@@ -7,3 +7,4 @@ const ListScreen = () => {
 const styles = StyleSheet.create({});
 export default ListScreen;
 /// this is boiler plate code that will start with in may components
+// vs code shortcut  rnfe
