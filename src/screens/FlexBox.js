@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
   viewStyle: {
     borderWidth: 3,
     borderColor: "black",
+    height: 200,
     flexDirection: "row",
-    height: 200, // height of the view box
-    alignItems: "center", // now in center of row verticaly
+    justifyContent: "space-around", // very similar to alignItems- just works in opposite direction
   },
   textStyle: {
     borderWidth: 3,
@@ -27,8 +27,5 @@ const styles = StyleSheet.create({
 export default FlexBox;
 // use flex box model to get some number of commmon sibling elements
 // one common parent
-// flexDirection -controls wheaterh children are
-// laid out vertically or horizontally  -default is column or vertical.
-// flexDirection row would be horizontally
-// flexDirection affects the behaivor of alignItems to the primary axis
-// being controled by flexDirection
+// justifyContent , alignItems and flexDirection - are always applied to
+// parent element to customize how the children inside are displayed
