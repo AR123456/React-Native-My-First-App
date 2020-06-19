@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   textTwoStyle: {
     borderWidth: 3,
     borderColor: "red",
-    flex: 1,
+    alignSelf: "center",
   },
   textThreeStyle: {
     borderWidth: 3,
@@ -36,6 +36,4 @@ export default FlexBox;
 // one common parent -
 // apply to parent - alignItems, justifyContent,flexDirection
 // apply to child - flex, alignSelf
-// use flex when you want child to exapand and fill up avalible spave
-//flex:1  will cause child2 to expand and take up as much
-//vertical space as it can ( it will operate in same directions as flex direction)
+// use alignSelf when you want to overide the alignItems on the parent element
