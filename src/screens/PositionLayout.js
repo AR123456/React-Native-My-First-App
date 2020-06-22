@@ -12,17 +12,15 @@ const PositionLayout = () => {
 };
 const styles = StyleSheet.create({
   // adding a styling object
-  // by default every element has a position property set to relative
-  //changing to absolute will cause the given element to be completly
-  // ignored by its siblings .
-  // it will still obey some flex box rules if they are set by the parent
+  // Top, bottom , left and right properties Properties feel similar to
+  //margin but behave differently.
+  // They Add a little bit of extra spacing between one element and a sibling.
+  //Spacing is added after everything gets placed on the screen.
+  // so it casues items to overlay one another
   viewStyle: {
     borderWidth: 3,
     borderColor: "black",
     height: 200,
-    // alignItems: "center", // is not ignored child 2
-    alignItems: "flex-end", // flex-end is not ignored by child 2 but still ignores its sibs
-    // alignItems: "stretch", // when set to stretch child 2  ignores it
   },
   textOneStyle: {
     borderWidth: 3,
@@ -32,7 +30,9 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "red",
     fontSize: 18,
-    position: "absolute", // this causes child one and two to overlay one another
+    // top: 10, // child 2 shifts down and covers part of child 3
+    // bottom: 10, // child 2 shifts up and covers part of child 1
+    left: 10, // causes child 2 to extend beyond the limits of parent view
   },
   textThreeStyle: {
     borderWidth: 3,
