@@ -12,11 +12,9 @@ const PositionLayout = () => {
 };
 const styles = StyleSheet.create({
   // adding a styling object
-  // Top, bottom , left and right properties Properties feel similar to
-  //margin but behave differently.
-  // They Add a little bit of extra spacing between one element and a sibling.
-  //Spacing is added after everything gets placed on the screen.
-  // so it casues items to overlay one another
+  // absolute fill - use this when outcome is to completely fill up the parent
+  // container with child
+  //
   viewStyle: {
     borderWidth: 3,
     borderColor: "black",
@@ -30,9 +28,12 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "red",
     fontSize: 18,
-    // top: 10, // child 2 shifts down and covers part of child 3
-    // bottom: 10, // child 2 shifts up and covers part of child 1
-    left: 10, // causes child 2 to extend beyond the limits of parent view
+    // position: "absolute", // first postion absolute
+    // top: 0, // then top,right,left and bottom to 0
+    // right: 0,
+    // bottom: 0,
+    // left: 0,
+    ...StyleSheet.absoluteFillObject, // this is the react native shortcut
   },
   textThreeStyle: {
     borderWidth: 3,
