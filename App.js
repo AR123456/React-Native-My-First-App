@@ -10,6 +10,7 @@ import SquareScreen from "./src/screens/SquareScreen";
 import TextScreen from "./src/screens/TextScreen";
 import BoxScreen from "./src/screens/BoxScreen";
 import FlexBox from "./src/screens/FlexBox";
+import PositionLayout from "./src/screens/PositionLayout";
 
 const navigator = createStackNavigator(
   // route configuration object
@@ -24,6 +25,7 @@ const navigator = createStackNavigator(
     Text: TextScreen,
     Box: BoxScreen,
     Flex: FlexBox,
+    Position: PositionLayout,
   },
 
   {
