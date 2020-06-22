@@ -38,14 +38,6 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("Box")}
         title="Go to Box Object  Layout"
       ></Button>
-      <Button
-        onPress={() => navigation.navigate("Flex")}
-        title="Go to Flex Box Layout"
-      ></Button>
-      <Button
-        onPress={() => navigation.navigate("Position")}
-        title="Go to Position Layout"
-      ></Button>
     </View>
   );
 };
