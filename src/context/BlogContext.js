@@ -8,7 +8,7 @@ export const BlogProvider = ({ children }) => {
   const addBlogPost = () => {
     //... gets all the BlogPosts we have and adds thme to a new array
     setBlogPosts([
-      ...BlogPosts,
+      ...blogPosts,
       { title: `Blog Post #${blogPosts.length + 1}` },
     ]);
   };
@@ -21,3 +21,4 @@ export const BlogProvider = ({ children }) => {
 };
 
 export default BlogContext;
+// Context moves information around
