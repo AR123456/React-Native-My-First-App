@@ -1,54 +1,51 @@
-// import React, { useState } from "react";
-// change import over to useReducer
-import React, { useReducer } from "react";
+//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707490#overview
 
-const BlogContext = React.createContext();
-// blogReducer takes in state and action. Here state could be called blogPosts
-// but by convention it is called state
+// do not need this since we no longer have any jsx inside this file
+// import React, { useReducer } from "react";
+// now make use of createDataContext
+import createDataContext from "./createDataContext";
+
+// now remove all code that got extracted to the createDataContex function
+
+// const BlogContext = React.createContext();
+
 const blogReducer = (state, action) => {
-  //depenging on the action type will do some different operation on state object
   switch (action.type) {
     case "add_blogpost":
-      // what is returned is basicaly what was in the addBlogPost function
       return [...state, { title: `Blog Post #${blogPosts.length + 1}` }];
-    // default case is return
+
     default:
       return state;
   }
 };
 
-export const BlogProvider = ({ children }) => {
-  //   const [blogPosts, setBlogPosts] = useState([]);
-  // change over to useReducer, pass in the reducer function to use and
-  // the second arg is the state object.In this case an empty array
-  //get back the state object here is blogPosts ( could change the name from blogPosts to
-  //state if desired)  and then pass in the  disipatch function
-  const [blogPosts, dispatch] = useReducer(blogReducer, []);
-  // new addBlogPost function
-
-  const addBlogPost = () => {
-    // anytime someone callse addBlob post dispath
-    dispatch({ type: "add_blogpost" });
-  };
-
-  // deleting the addBlogPost function  since we will use dispatch for this now
-  //and remove  addBlogPost from value property below
-  //   const addBlogPost = () => {
-  //     //... gets all the BlogPosts we have and adds thme to a new array
-  //     setBlogPosts([
-  //       ...blogPosts,
-  //       { title: `Blog Post #${blogPosts.length + 1}` },
-  //     ]);
-  //   };
-
-  return (
-    // <BlogContext.Provider value={{ data: blogPosts, addBlogPost }}>
-    // adding the new addBlogPost with the dispatch in it to value
-    <BlogContext.Provider value={{ data: blogPosts, addBlogPost }}>
-      {children}
-    </BlogContext.Provider>
-  );
+const addBlogPost = () => {
+  dispatch({ type: "add_blogpost" });
 };
 
-export default BlogContext;
-// Context moves information around
+// export const BlogProvider = ({ children }) => {
+//   const [blogPosts, dispatch] = useReducer(blogReducer, []);
+/// the only thing that needs to be kept is the addBlogPost action
+//   // const addBlogPost = () => {
+//   //   dispatch({ type: "add_blogpost" });
+//   // };
+
+//   return (
+//     <BlogContext.Provider value={{ data: blogPosts, addBlogPost }}>
+//       {children}
+//     </BlogContext.Provider>
+//   );
+// };
+////////dont need the export default any longer either
+// export default BlogContext;
+
+/////////////////////// in this export destructure out Context and Provider
+export const { Context, Provider } = createDataContext(
+  // then pass into createDataContext()
+  //1 the reducer
+  blogReducer,
+  //2 an object with all the actions we want to have
+  { addBlogPost },
+  //2 and then the initial default state value
+  []
+);
