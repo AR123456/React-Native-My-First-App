@@ -1,13 +1,7 @@
 //https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707490#overview
-
-// do not need this since we no longer have any jsx inside this file
-// import React, { useReducer } from "react";
+//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707494#overview
 // now make use of createDataContext
 import createDataContext from "./createDataContext";
-
-// now remove all code that got extracted to the createDataContex function
-
-// const BlogContext = React.createContext();
 
 const blogReducer = (state, action) => {
   switch (action.type) {
@@ -18,26 +12,16 @@ const blogReducer = (state, action) => {
       return state;
   }
 };
-
-const addBlogPost = () => {
-  dispatch({ type: "add_blogpost" });
+// this function needs access to dispatch which is in the createDataContext file
+// addBlogPost is how we change our state
+// pass in the dispatch fuction
+const addBlogPost = (dispatch) => {
+  // dont call dispatch right away put it in the return
+  return () => {
+    // return a new function and inside of it return displatch
+    dispatch({ type: "add_blogpost" });
+  };
 };
-
-// export const BlogProvider = ({ children }) => {
-//   const [blogPosts, dispatch] = useReducer(blogReducer, []);
-/// the only thing that needs to be kept is the addBlogPost action
-//   // const addBlogPost = () => {
-//   //   dispatch({ type: "add_blogpost" });
-//   // };
-
-//   return (
-//     <BlogContext.Provider value={{ data: blogPosts, addBlogPost }}>
-//       {children}
-//     </BlogContext.Provider>
-//   );
-// };
-////////dont need the export default any longer either
-// export default BlogContext;
 
 /////////////////////// in this export destructure out Context and Provider
 export const { Context, Provider } = createDataContext(
