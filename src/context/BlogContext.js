@@ -1,6 +1,3 @@
-//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707490#overview
-//https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15707494#overview
-// now make use of createDataContext
 import createDataContext from "./createDataContext";
 
 const blogReducer = (state, action) => {
