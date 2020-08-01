@@ -44,7 +44,20 @@ const IndexScreen = ({ navigation }) => {
     </View>
   );
 };
-
+// adding + button to header to create a post
+IndexScreen.navigationOptions = ({ navigation }) => {
+  return {
+    // return an object in which we can define what happens
+    headerRight: () => (
+      // put in a react element
+      // point to the "Create" route
+      <TouchableOpacity onPress={() => navigation.navigate("Create")}>
+        {/* adding icon  */}
+        <Feather name="plus" size={30} />
+      </TouchableOpacity>
+    ),
+  };
+};
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
