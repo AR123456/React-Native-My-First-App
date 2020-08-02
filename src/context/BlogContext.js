@@ -7,8 +7,7 @@ const blogReducer = (state, action) => {
         ...state,
         {
           id: Math.floor(Math.random() * 99999),
-          // new logic for title
-          // title: `Blog Post #${state.length + 1}`,
+
           title: action.payload.title,
           content: action.payload.content,
         },
@@ -20,18 +19,17 @@ const blogReducer = (state, action) => {
       return state;
   }
 };
-// context needs to be able to accept a new title and content to make blog post
-// re pourposing addBlogPost for this
-// const addBlogPost = (dispatch) => {
-//   return () => {
-//     dispatch({ type: "add_blogpost" });
-//   };
-// };
+
 const addBlogPost = (dispatch) => {
   // pass args from component in here
-  return (title, content) => {
+  // adding in the third argument , a callback to handle navigation back to index only after
+  // response back from API call (not making API call yet but will )
+  // by doing this could then make the return async , wrap an axios call with the dispatch in
+  // a try catch with await
+  return (title, content, callback) => {
     // payload takes key value pairs
     dispatch({ type: "add_blogpost", payload: { title, content } });
+    callback();
   };
 };
 
