@@ -3,14 +3,11 @@ import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { Context } from "../context/BlogContext";
 
 const CreateScreen = ({ navigation }) => {
-  // Local State to control the text input. Even though we are making use of contex here and
-  // trying to centralize all state in one location we can still have local state
-  // inside of one single component to control the text that is being entered in the textInput
-  // The process of adding in state to the textInpo if referred to as turning it into a controlled input
-  // setting up state for  title and content
+  // Local State to control the text input
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
+  // context needs to be able to accept a new title and content to make blog post
+  const { addBlogPost } = useContext(Context);
   return (
     <View>
       <Text style={styles.label}>Enter Title</Text>
@@ -25,7 +22,11 @@ const CreateScreen = ({ navigation }) => {
         value={content}
         onChangeText={(content) => setContent(content)}
       ></TextInput>
-      <Button title="Add Blog Post "></Button>
+      {/* addBlogPost needs to be call with title and content when button tapped */}
+      <Button
+        title="Add Blog Post"
+        onPress={() => addBlogPost(title, content)}
+      ></Button>
     </View>
   );
 };
