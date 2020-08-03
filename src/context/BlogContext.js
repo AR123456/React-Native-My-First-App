@@ -21,13 +21,7 @@ const blogReducer = (state, action) => {
 };
 
 const addBlogPost = (dispatch) => {
-  // pass args from component in here
-  // adding in the third argument , a callback to handle navigation back to index only after
-  // response back from API call (not making API call yet but will )
-  // by doing this could then make the return async , wrap an axios call with the dispatch in
-  // a try catch with await
   return (title, content, callback) => {
-    // payload takes key value pairs
     dispatch({ type: "add_blogpost", payload: { title, content } });
     callback();
   };

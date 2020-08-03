@@ -22,18 +22,9 @@ const CreateScreen = ({ navigation }) => {
         value={content}
         onChangeText={(content) => setContent(content)}
       ></TextInput>
-      {/* addBlogPost needs to be call with title and content when button tapped */}
+
       <Button
         title="Add Blog Post"
-        // navigation back to index can be done in a couple of ways
-        // passing in
-        // this may not be best if there ever is reason to make a network request before
-        // updating state.  LIke saving the blog post to an API
-        // could cause an error while waiting for the API to accept request
-        // better way is to pass the navication call inside a call back in addBlogPost
-        // call back is third argument
-        // now can modify addBlogPost - after successfull saving blog post (dispatch and action )
-        // now go to blog context and update the addBlogPost function
         onPress={() => {
           addBlogPost(title, content, () => {
             navigation.navigate("Index");
