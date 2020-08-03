@@ -36,5 +36,6 @@ export const { Context, Provider } = createDataContext(
   blogReducer,
 
   { addBlogPost, deleteBlogPost },
-  []
+  // adding a default blog post for testing
+  [{ title: "Test Post", content: "Test Content", id: 1 }]
 );
