@@ -19,15 +19,7 @@ const BlogPostForm = () => {
         onChangeText={(content) => setContent(content)}
       ></TextInput>
 
-      <Button
-        title="Save Blog Post"
-        onPress={() => {
-          // not just adding, could be editing so this will need to be different
-          // addBlogPost(title, content, () => {
-          //   navigation.navigate("Index");
-          // });
-        }}
-      ></Button>
+      <Button title="Save Blog Post" onPress={() => {}}></Button>
     </View>
   );
 };
