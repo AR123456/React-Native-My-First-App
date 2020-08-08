@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-// destructute onSubmit and inititalValues from props object
-// note initialValues will be undefined if coming from CreateScreen
+
 const BlogPostForm = ({ onSubmit, initialValues }) => {
-  // const [title, setTitle] = useState("");
-  // now this is initialValues.title and state
   const [title, setTitle] = useState(initialValues.title);
-  // const [content, setContent] = useState("");
+
   const [content, setContent] = useState(initialValues.content);
   return (
     <View>
@@ -30,7 +27,15 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
     </View>
   );
 };
-
+// passing default props to BlogPostFrom
+// if we ever pass in the component with no values this will
+// take care of that - react automaticaly checks for defaultProps
+BlogPostForm.defaultProps = {
+  initialValues: {
+    title: "",
+    content: "",
+  },
+};
 const styles = StyleSheet.create({
   input: {
     fontSize: 18,
