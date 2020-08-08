@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-
-const BlogPostForm = () => {
+// destructute onSubmit from propts object
+const BlogPostForm = ({ onSubmit }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   return (
@@ -19,7 +19,12 @@ const BlogPostForm = () => {
         onChangeText={(content) => setContent(content)}
       ></TextInput>
 
-      <Button title="Save Blog Post" onPress={() => {}}></Button>
+      <Button
+        title="Save Blog Post"
+        // pass in the onSubmit callback
+        // pass in the title and content user just entered
+        onPress={() => onSubmit(title, content)}
+      ></Button>
     </View>
   );
 };
