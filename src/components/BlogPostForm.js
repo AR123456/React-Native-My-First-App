@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-// destructute onSubmit from propts object
-const BlogPostForm = ({ onSubmit }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+// destructute onSubmit and inititalValues from props object
+// note initialValues will be undefined if coming from CreateScreen
+const BlogPostForm = ({ onSubmit, initialValues }) => {
+  // const [title, setTitle] = useState("");
+  // now this is initialValues.title and state
+  const [title, setTitle] = useState(initialValues.title);
+  // const [content, setContent] = useState("");
+  const [content, setContent] = useState(initialValues.content);
   return (
     <View>
       <Text style={styles.label}>Enter Title</Text>
@@ -21,8 +25,6 @@ const BlogPostForm = ({ onSubmit }) => {
 
       <Button
         title="Save Blog Post"
-        // pass in the onSubmit callback
-        // pass in the title and content user just entered
         onPress={() => onSubmit(title, content)}
       ></Button>
     </View>
@@ -30,7 +32,6 @@ const BlogPostForm = ({ onSubmit }) => {
 };
 
 const styles = StyleSheet.create({
-  // this came out of the CreateScreen
   input: {
     fontSize: 18,
     borderWidth: 1,
