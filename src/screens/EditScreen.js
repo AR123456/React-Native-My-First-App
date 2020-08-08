@@ -4,21 +4,27 @@ import { Context } from "../context/BlogContext";
 import BlogPostForm from "../components/BlogPostForm";
 
 const EditScreen = ({ navigation }) => {
-  const { state } = useContext(Context);
+  // new const for id to cut down on typing
+  const id = navigation.getParam("id");
+  // getting state of initial values from the Context object, pull off editBlogPost
+  // so that we can call from inside the onSubmit call back
+  const { state, editBlogPost } = useContext(Context);
   // going to need the blogPosts existing title and content to pass in as intital
   // starting values to form
   const blogPost = state.find(
-    (blogPost) => blogPost.id === navigation.getParam("id")
+    // (blogPost) => blogPost.id === navigation.getParam("id")
+    (blogPost) => blogPost.id === id
   );
 
   return (
     <BlogPostForm
-      // pass in a prop to BlogPost form representing the initial values to use in form
       initialValues={{ title: blogPost.title, content: blogPost.content }}
       onSubmit={(title, content) => {
-        // at this point do not have anything in side context to initiate an edit of a blog post
-        // will come back to that later.  will need to pass of to a function coming from BlogContext
-        console.log(title, content);
+        // need to modify state > the action functions are in BlogContext
+        // // need to add some stuff to be able to edit
+        // console.log(title, content);
+        // pass new content to editBlogPost
+        editBlogPost(id, title, content);
       }}
     ></BlogPostForm>
   );

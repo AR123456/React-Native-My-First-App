@@ -27,9 +27,7 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
     </View>
   );
 };
-// passing default props to BlogPostFrom
-// if we ever pass in the component with no values this will
-// take care of that - react automaticaly checks for defaultProps
+
 BlogPostForm.defaultProps = {
   initialValues: {
     title: "",

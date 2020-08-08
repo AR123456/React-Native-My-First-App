@@ -32,10 +32,23 @@ const deleteBlogPost = (dispatch) => {
     dispatch({ type: "delete_blogpost", payload: id });
   };
 };
+// need to dispatch and action for editing, this is how we change the state object
+// take content that user provided   action function
+const editBlogPost = (dispatch) => {
+  // need the new title and content also need id of post
+  return (id, title, context) => {
+    //this is what actualy runs inside the component
+    // object with type property and payload object
+    dispatch({
+      type: "edit_blogpost",
+      payload: { id, title, content },
+    });
+  };
+};
 export const { Context, Provider } = createDataContext(
   blogReducer,
-
-  { addBlogPost, deleteBlogPost },
+  // make editBlogPost function avalible to all children
+  { addBlogPost, deleteBlogPost, editBlogPost },
   // adding a default blog post for testing
   [{ title: "Test Post", content: "Test Content", id: 1 }]
 );
