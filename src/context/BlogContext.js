@@ -15,6 +15,26 @@ const blogReducer = (state, action) => {
 
     case "delete_blogpost":
       return state.filter((blogPost) => blogPost.id !== action.payload);
+    // caste to edit a blobpost
+    // need the id of blob post from the action object
+    // state is an array
+    //
+    // case "edit_blogpost":
+    //   return state.map((blobPost) => {
+    //     if (blogPost.id === action.payload.id) {
+    //       //if the blogPost id matches the one in payload
+    //       // dont return the original, return the edited one in the payload
+    //       return action.payload;
+    //     } else {
+    //       // if we get here just return the orgiginal (un edited) blogPost
+    //       return blogPost;
+    //     }
+    //   });
+    //////// using ternary
+    case "edit_blogpost":
+      return state.map((blogPost) => {
+        return blogPost.id === action.payload.id ? action.payload : blogPost;
+      });
     default:
       return state;
   }
@@ -32,13 +52,9 @@ const deleteBlogPost = (dispatch) => {
     dispatch({ type: "delete_blogpost", payload: id });
   };
 };
-// need to dispatch and action for editing, this is how we change the state object
-// take content that user provided   action function
+
 const editBlogPost = (dispatch) => {
-  // need the new title and content also need id of post
-  return (id, title, context) => {
-    //this is what actualy runs inside the component
-    // object with type property and payload object
+  return (id, title, content) => {
     dispatch({
       type: "edit_blogpost",
       payload: { id, title, content },
@@ -47,8 +63,8 @@ const editBlogPost = (dispatch) => {
 };
 export const { Context, Provider } = createDataContext(
   blogReducer,
-  // make editBlogPost function avalible to all children
+
   { addBlogPost, deleteBlogPost, editBlogPost },
-  // adding a default blog post for testing
+
   [{ title: "Test Post", content: "Test Content", id: 1 }]
 );
