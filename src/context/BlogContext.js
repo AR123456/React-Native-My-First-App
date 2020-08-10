@@ -15,22 +15,7 @@ const blogReducer = (state, action) => {
 
     case "delete_blogpost":
       return state.filter((blogPost) => blogPost.id !== action.payload);
-    // caste to edit a blobpost
-    // need the id of blob post from the action object
-    // state is an array
-    //
-    // case "edit_blogpost":
-    //   return state.map((blobPost) => {
-    //     if (blogPost.id === action.payload.id) {
-    //       //if the blogPost id matches the one in payload
-    //       // dont return the original, return the edited one in the payload
-    //       return action.payload;
-    //     } else {
-    //       // if we get here just return the orgiginal (un edited) blogPost
-    //       return blogPost;
-    //     }
-    //   });
-    //////// using ternary
+
     case "edit_blogpost":
       return state.map((blogPost) => {
         return blogPost.id === action.payload.id ? action.payload : blogPost;
@@ -43,7 +28,11 @@ const blogReducer = (state, action) => {
 const addBlogPost = (dispatch) => {
   return (title, content, callback) => {
     dispatch({ type: "add_blogpost", payload: { title, content } });
-    callback();
+    if (callback) {
+      // we are done so put the callback here
+      // but only if we have a callback
+      callback();
+    }
   };
 };
 
@@ -54,11 +43,17 @@ const deleteBlogPost = (dispatch) => {
 };
 
 const editBlogPost = (dispatch) => {
-  return (id, title, content) => {
+  // add the call back to navigate back one page after edit completed
+  return (id, title, content, callback) => {
     dispatch({
       type: "edit_blogpost",
       payload: { id, title, content },
     });
+    if (callback) {
+      // we are done so put the callback here
+      // but only if we have a callback
+      callback();
+    }
   };
 };
 export const { Context, Provider } = createDataContext(
