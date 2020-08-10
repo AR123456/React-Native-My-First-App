@@ -29,8 +29,6 @@ const addBlogPost = (dispatch) => {
   return (title, content, callback) => {
     dispatch({ type: "add_blogpost", payload: { title, content } });
     if (callback) {
-      // we are done so put the callback here
-      // but only if we have a callback
       callback();
     }
   };
@@ -43,15 +41,12 @@ const deleteBlogPost = (dispatch) => {
 };
 
 const editBlogPost = (dispatch) => {
-  // add the call back to navigate back one page after edit completed
   return (id, title, content, callback) => {
     dispatch({
       type: "edit_blogpost",
       payload: { id, title, content },
     });
     if (callback) {
-      // we are done so put the callback here
-      // but only if we have a callback
       callback();
     }
   };
