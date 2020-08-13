@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,7 +13,13 @@ import { Feather } from "@expo/vector-icons";
 
 const IndexScreen = ({ navigation }) => {
   //  currently the index screen is reading posts right from the Context object
-  const { state, deleteBlogPost } = useContext(Context);
+  // set up getBlogPosts in BlogContext so is now avalible, destrucuring getBlogPosts
+  const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
+  // need to put getBlogPosts in useEffect to avoid getting caught in an infinant loop
+  // just run one time when the component if first rendered.
+  useEffect(() => {
+    getBlogPosts();
+  }, []);
 
   return (
     <View>
