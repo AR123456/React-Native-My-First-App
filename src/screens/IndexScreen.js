@@ -15,6 +15,19 @@ const IndexScreen = ({ navigation }) => {
   const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
   useEffect(() => {
     getBlogPosts();
+    // this tells react hagiv when the index screen is in focus to
+    // get the blogPosts again
+    const listener = navigation.addListener("didFocus", () => {
+      getBlogPosts();
+      // clean up the listener to avoid potential future memory leak
+    });
+    // clean up the listener to avoid potential future memory leak
+    // return a function from use effect
+    return () => {
+      // this will be invoked only if the index screen is completley not shown on screen
+      // not just navigating away
+      listener.remove();
+    };
   }, []);
 
   return (
