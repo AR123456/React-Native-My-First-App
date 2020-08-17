@@ -14,21 +14,21 @@ const blogReducer = (state, action) => {
 
     case "delete_blogpost":
       return state.filter((blogPost) => blogPost.id !== action.payload);
-    case "add_blogpost":
-      return [
-        ...state,
-        {
-          id: Math.floor(Math.random() * 99999),
-          title: action.payload.title,
-          content: action.payload.content,
-        },
-      ];
+    // case "add_blogpost":
+    //   return [
+    //     ...state,
+    //     {
+    //       id: Math.floor(Math.random() * 99999),
+    //       title: action.payload.title,
+    //       content: action.payload.content,
+    //     },
+    //   ];
 
     default:
       return state;
   }
 };
-// can now make use of the jsonServer in the action functions
+
 const getBlogPosts = (dispatch) => {
   return async () => {
     const response = await jsonServer.get("/blogposts");
@@ -36,25 +36,22 @@ const getBlogPosts = (dispatch) => {
   };
 };
 
-// const addBlogPost = (dispatch) => {
-//   return (title, content, callback) => {
-//     dispatch({ type: "add_blogpost", payload: { title, content } });
-//     if (callback) {
-//       callback();
-//     }
-//   };
-// };
 const addBlogPost = (dispatch) => {
   return async (title, content, callback) => {
-    // telling jsonServer to creage a blogpost
     await jsonServer.post("/blogposts", { title, content });
     if (callback) {
       callback();
     }
   };
 };
+// const deleteBlogPost = (dispatch) => {
+//   return (id) => {
+//     dispatch({ type: "delete_blogpost", payload: id });
+//   };
+// };
 const deleteBlogPost = (dispatch) => {
-  return (id) => {
+  return async (id) => {
+    await jsonServer.delete(`/blogposts/${id}`);
     dispatch({ type: "delete_blogpost", payload: id });
   };
 };
