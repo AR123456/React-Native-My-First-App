@@ -17,3 +17,4 @@ module.exports = router;
 // note you cannot very easily test a post reqeust in the browser because when you hit the
 // enter key it makes a get request
 // to test this post reqeust will use postman
+// if not already install postman client

@@ -1,7 +1,5 @@
 ## Binder React Native
 
-## lecture 172 and 173 updating package Json to auto restart server after any changes to the code & notes on signup process
+## lecture 174 testing the post request with postman
 
-## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708112#overview
-
-## using mongo on Atlas clound.mongobd.com
+## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708126#overview

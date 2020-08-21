@@ -6,8 +6,7 @@ const app = express();
 // associates all the request handlers we added to the router with
 // our main express application
 app.use(authRoutes);
-const mongoUri =
-  "#";
+const mongoUri = "#";
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
