@@ -1,15 +1,13 @@
+c; // require the model first
+// only will be used in index.js so no const needed
+require("./models/User");
+
 const express = require("express");
 const mongoose = require("mongoose");
-// bodyParser to handle JSON objects
-//it will automacially parse infromation associated with
-// the body property of the incoming requests.
-// const bodyParser = require("body-parser");
+
 const authRoutes = require("./routes/authRoutes");
 
 const app = express();
-// this needs to go before the authRoutes so that the info gets parsed
-// json() is being called as a function
-//app.use(bodyParser.json());
 app.use(express.json());
 app.use(authRoutes);
 const mongoUri = "#";

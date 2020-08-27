@@ -1,7 +1,7 @@
 ## Binder React Native
 
-## lecture 175 Handling JSON Data
+## lecture 176- interacting with MongoDB with Mongoose
 
-## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708134#overview
+## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708138#questions/8782480
 
-## re start at 2:03 in
+## User model
