@@ -10,8 +10,7 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 app.use(express.json());
 app.use(authRoutes);
-const mongoUri =
-  "mongodb+srv://anne:midnight1@cluster0.bp7ys.mongodb.net/track-app?retryWrites=true&w=majority";
+const mongoUri = "#";
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
