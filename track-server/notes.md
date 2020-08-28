@@ -1,7 +1,7 @@
 ## Binder React Native
 
-## lecture 178 -creata and save a user
+## lecture 175 Handling JSON Data
 
-## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708142#questions/8782480
+## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708134#overview
 
-## User model
+## re start at 2:03 in
