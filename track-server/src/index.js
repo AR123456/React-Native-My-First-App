@@ -10,7 +10,7 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 app.use(express.json());
 app.use(authRoutes);
-const mongoUri = "add";
+const mongoUri = "TBD";
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
