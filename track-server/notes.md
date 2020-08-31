@@ -1,7 +1,11 @@
 ## Binder React Native
 
-## lecture 178 -creata and save a user
+## lecture 180 -what is a JSON web token
 
-## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708142#questions/8782480
+## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708154#overview
 
-## User model
+## testing using postman or request.rest vscode package
+
+## JWT is a string tha proves that a user is who thye say they are
+
+## https://jwt.io/ to encode and decode - the payload contains the identifying data
