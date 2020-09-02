@@ -1,6 +1,8 @@
 const express = require("express");
-// to use mongoose schema in this route
+
 const mongoose = require("mongoose");
+// require the package
+const jwt = require("jsonwebtoken");
 const User = mongoose.model("User");
 
 const router = express.Router();
@@ -11,13 +13,15 @@ router.post("/signup", async (req, res) => {
     const user = new User({ email, password });
 
     await user.save();
-
-    res.send("You made a post request ");
+    // instead of sending back a message will create and  send the JWT
+    // res.send("You made a post request ");
+    //////jwt//////
+    // the first argument to this function is the info we want to put inside the token
+    // we want to encode the user id, the second arg is the secert key - secure this
+    const token = jwt.sign({ userId: user._id }, "change me");
+    // res.send the token object (can look at this in postman or request.rest)
+    res.send({ token });
   } catch (err) {
-    // catch any error thown in the post request
-    // http status code can be sent 422 is user sent invalid data
-    // "message" is produced by mongoose automatically
-    // put in return to make sure no more code is executed
     return res.status(422).send(err.message);
   }
 });
