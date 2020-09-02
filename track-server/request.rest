@@ -1,3 +1,10 @@
+
+
+ 
+GET http://localhost:3000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjRhNTFlODY5MTY5ZjU1ODA2ODIxZGIiLCJpYXQiOjE1OTg3MDYxNTJ9.vLzARVjCGQLy9mP-UPgLvMZPclEpBOHnraopPan71Gc
+
+
 POST http://localhost:3000/signup
 Content-Type: application/json
 

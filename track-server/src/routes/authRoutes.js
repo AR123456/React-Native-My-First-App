@@ -13,13 +13,9 @@ router.post("/signup", async (req, res) => {
     const user = new User({ email, password });
 
     await user.save();
-    // instead of sending back a message will create and  send the JWT
-    // res.send("You made a post request ");
-    //////jwt//////
-    // the first argument to this function is the info we want to put inside the token
-    // we want to encode the user id, the second arg is the secert key - secure this
-    const token = jwt.sign({ userId: user._id }, "change me");
-    // res.send the token object (can look at this in postman or request.rest)
+
+    const token = jwt.sign({ userId: user._id }, "MY_SECRET_KEY");
+
     res.send({ token });
   } catch (err) {
     return res.status(422).send(err.message);
