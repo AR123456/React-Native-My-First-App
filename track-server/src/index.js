@@ -12,8 +12,7 @@ const requireAuth = require("./middlewares/requireAuth");
 const app = express();
 app.use(express.json());
 app.use(authRoutes);
-const mongoUri =
-  "##";
+const mongoUri = "";
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
