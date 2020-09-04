@@ -1,11 +1,5 @@
 ## Binder React Native
 
-## lecture 185 the signin route
+## lecture 184 coding the salting and hasing
 
-## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708254#questions
-
-## using a pre hook in method in the User model to create and salt password.
-
-## now using them in the route
-
-## now test with postman or vs code request.rest
+## https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708246#questions

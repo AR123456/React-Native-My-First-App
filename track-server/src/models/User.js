@@ -49,7 +49,6 @@ userSchema.pre("save", function (next) {
 /// Now implement what to do to at log in.  Run the provided password
 // through the hashing algorythem and compare the two results
 // this could go in the reuqest handler but Steve is putting here
-// this function can be use whenever a user logs in
 ////// code to automate the password checking process ///
 //atach method to userr model
 // dont use an arrow here, we are working with "this"
