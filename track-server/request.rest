@@ -19,12 +19,32 @@
 # POST http://localhost:3000/signin
 # Content-Type: application/json
 
-
 # {
 #     "email":"test@test.com",
 #     "password":"mypassword"
 # }
 
-GET http://localhost:3000/tracks
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjRhYTA2NzMyNWI0YTU0Yjg3Y2M4NDIiLCJpYXQiOjE1OTg3MjYyNDh9.Nab5UUhEOUSaM5dOYF649YqMHdnNCYUx3IcYtezhBj0
+# GET http://localhost:3000/tracks
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjRhYTA2NzMyNWI0YTU0Yjg3Y2M4NDIiLCJpYXQiOjE1OTg3MjYyNDh9.Nab5UUhEOUSaM5dOYF649YqMHdnNCYUx3IcYtezhBj0
  
+
+POST http://localhost:3000/tracks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjRhYTA2NzMyNWI0YTU0Yjg3Y2M4NDIiLCJpYXQiOjE1OTg3MjYyNDh9.Nab5UUhEOUSaM5dOYF649YqMHdnNCYUx3IcYtezhBj0
+Content-Type: application/json
+Body: raw 
+{
+   "name":"My Track",
+   "locations":[
+       {
+           "timestamp":10000000,
+           "coords":{
+               "latitude":100,
+               "longitude":100,
+               "altitude":100,
+               "accuracy":100,
+               "heading":100,
+               "speed":100
+           }
+       }
+   ]
+}

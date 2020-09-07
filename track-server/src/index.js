@@ -14,7 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(authRoutes);
 app.use(trackRoutes);
-const mongoUri = " ";
+const mongoUri =
+  "####";
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,

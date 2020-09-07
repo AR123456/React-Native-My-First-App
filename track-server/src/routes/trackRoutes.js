@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+//
 const requireAuth = require("../middlewares/requireAuth");
 //Just define the tack model once- add to index.js at top like User model
 const Track = mongoose.model("Track");
@@ -17,6 +18,24 @@ router.get("/tracks", async (req, res) => {
   const tracks = await Track.find({ userId: req.user._id });
   // getting back an array
   res.send(tracks);
+});
+
+//post request to /tracks to create a track
+// this post request is coming from the front end
+router.post("/tracks", async (req, res) => {
+  const { name, locations } = req.body;
+  if (!name || !locations) {
+    return res
+      .status(411)
+      .send({ error: "You must provide a name and locations" });
+  }
+  try {
+    const track = new Track({ name, locations, userId: req.user._id });
+    await track.save();
+    res.send(track);
+  } catch (err) {
+    res.status(422).send({ error: err.message });
+  }
 });
 
 // export the router
