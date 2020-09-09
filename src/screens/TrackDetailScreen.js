@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 const TrackDetailScreen = () => {
   return (
     <View>
-      <Text style={{ fontSize: 48 }}></Text>
+      <Text style={{ fontSize: 48 }}>Track Detail</Text>
     </View>
   );
 };
