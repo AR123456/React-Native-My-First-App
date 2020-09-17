@@ -10,8 +10,7 @@ import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 const switchNavigator = createSwitchNavigator({
-  //route configuration object- bunch of nested create navigator functions
-  // list out what it will display - auth flow and not auth flow
+  //route configuration object
   // can show both Screens  and other navigators  in here
   loginFlow: createStackNavigator({
     Signup: SignupScreen,
