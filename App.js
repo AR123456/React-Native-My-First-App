@@ -9,6 +9,9 @@ import SignupScreen from "./src/screens/SignupScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
+// import the provider - can re name it here which will be helpfull when we have other providers
+import { Provider as AuthProvider } from "./src/components/context/AuthContext";
+
 const switchNavigator = createSwitchNavigator({
   //route configuration object
   // can show both Screens  and other navigators  in here
@@ -26,4 +29,15 @@ const switchNavigator = createSwitchNavigator({
   }),
 });
 
-export default createAppContainer(switchNavigator);
+// now assinging to a variable called App
+// export default createAppContainer(switchNavigator);
+const App = createAppContainer(switchNavigator);
+// our own custome comoponent
+export default () => {
+  return (
+    <AuthProvider>
+      {/* now App goes in here  */}
+      <App />
+    </AuthProvider>
+  );
+};
