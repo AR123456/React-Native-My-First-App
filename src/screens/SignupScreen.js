@@ -1,21 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-
 import { Text, Input, Button } from "react-native-elements";
-
 import Spacer from "../components/Spacer";
-// hide header and vertical center the screen
+
 const SignupScreen = ({ navigation }) => {
+  // need to create state for email and password
+  // Button needs to initiate taking the state and sending it to backend
+  // to create new user account
+  // need to send to the back end using axios
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
-    // verticaly space the content , switch over to view element vs the fragment
     <View style={styles.container}>
       <Spacer>
         <Text h3>Sign Up for Tracker </Text>
       </Spacer>
-      <Input label="Email" />
+      {/* wire up state to the input 
+      whenever a user changes this input the onChangeText call back will 
+      be invoked . It will be called with the new email. Function called , take the  
+      newEmail and call setEmail with it. 
+      onChangeText https://reactnative.dev/docs/handling-text-input
+      */}
+
+      <Input
+        autoCapitalize="none"
+        label="Email"
+        value={email}
+        // onChangeText={(newEmail) => setEmail(newEmail)}
+        //short hand way to write this
+        onChangeText={setEmail}
+        // pass in prop to remove auto cap and auto correct
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
       <Spacer></Spacer>
 
-      <Input label="Password" />
+      <Input
+        label="Password"
+        value={password}
+        onChangeText={setPassword}
+        autoCapitalize="none"
+        autoCorrect={false}
+        // hide the password with stars
+        secureTextEntry
+      />
 
       <Spacer>
         <Button title="Sign Up" />
@@ -23,26 +51,11 @@ const SignupScreen = ({ navigation }) => {
     </View>
   );
 };
-// to hide the header add
-// navigation options property
-// define navigationsOpjects and assign it a function
-// the return it an object that will customize the stack navigator
-// and change the way that react navigation behaves
-// SignupScreen.navigationOptions = () => {
-//   return {
-//     // remove the header
-//     header: () => false,
-//   };
-// };
-// alternative way to write it if there is no need have access to the
-// navigation prop to passed into the function
+
 SignupScreen.navigationOptions = { header: () => false };
 
-//  function that returns an object  vs an object up the devoloper-may see this inthe docs
 const styles = StyleSheet.create({
   container: {
-    // borderColor: "red",
-    // borderWidth: 10,
     // this will cause the view to fill up as much vertical space as possible
     flex: 1,
     justifyContent: "center",
