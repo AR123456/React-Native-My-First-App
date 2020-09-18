@@ -1,14 +1,14 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-// imports from react native elements - by default no spacing, margin or padding out of the box
-// going to use a special component called spacer to the project to keep it DRY
+import { StyleSheet, View } from "react-native";
+
 import { Text, Input, Button } from "react-native-elements";
-// import the Spacer helper component
+
 import Spacer from "../components/Spacer";
-// pass in the navigation prop
+// hide header and vertical center the screen
 const SignupScreen = ({ navigation }) => {
   return (
-    <>
+    // verticaly space the content , switch over to view element vs the fragment
+    <View style={styles.container}>
       <Spacer>
         <Text h3>Sign Up for Tracker </Text>
       </Spacer>
@@ -20,21 +20,34 @@ const SignupScreen = ({ navigation }) => {
       <Spacer>
         <Button title="Sign Up" />
       </Spacer>
-
-      {/* removing all of this and going with react-native-elements  */}
-      {/* <Text style={{ fontSize: 48 }}> Signup screen</Text>
-      <Button
-        title="Go to Signin"
-        onPress={() => navigation.navigate("Signin")}
-      ></Button>
-      <Button
-        title="Go to main flow"
-        onPress={() => navigation.navigate("mainFlow")}
-      ></Button> */}
-    </>
+    </View>
   );
 };
+// to hide the header add
+// navigation options property
+// define navigationsOpjects and assign it a function
+// the return it an object that will customize the stack navigator
+// and change the way that react navigation behaves
+// SignupScreen.navigationOptions = () => {
+//   return {
+//     // remove the header
+//     header: () => false,
+//   };
+// };
+// alternative way to write it if there is no need have access to the
+// navigation prop to passed into the function
+SignupScreen.navigationOptions = { header: () => false };
 
+//  function that returns an object  vs an object up the devoloper-may see this inthe docs
+const styles = StyleSheet.create({
+  container: {
+    // borderColor: "red",
+    // borderWidth: 10,
+    // this will cause the view to fill up as much vertical space as possible
+    flex: 1,
+    justifyContent: "center",
+    // push up the bottom to remove white space at the top
+    marginBottom: 170,
+  },
+});
 export default SignupScreen;
-
-const styles = StyleSheet.create({});
