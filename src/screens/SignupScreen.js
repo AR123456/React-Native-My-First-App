@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text, Input, Button } from "react-native-elements";
 import Spacer from "../components/Spacer";
-
+//import Context from AuthContext
+import { Context as AuthContext } from "../components/context/AuthContext";
 const SignupScreen = ({ navigation }) => {
+  // state coming from context- the signup function here initiates request with API
+  const { state, signup } = useContext(AuthContext);
   // need to create state for email and password
   // need to send to the back end using axios
   const [email, setEmail] = useState("");
@@ -34,7 +37,8 @@ const SignupScreen = ({ navigation }) => {
       />
 
       <Spacer>
-        <Button title="Sign Up" />
+        {/* on press call back call sign up and pass email and password state  */}
+        <Button title="Sign Up" onPress={() => signup({ email, password })} />
       </Spacer>
     </View>
   );
