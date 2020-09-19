@@ -9,13 +9,36 @@ const authReducer = (state, action) => {
   }
 };
 /// Define action functions that will modify state here
+// 3 ways sign up sign in and sign out
+//function called with dispatch that will return a function
+const signup = (dispatch) => {
+  // this is what gets called inside the component
+  // will need email and password for sign up
+  return ({ email, password }) => {
+    // make api request to sign up with email and password
+    // if signed up, mofdify state that we are authentiated
+    // if sign up fails show an erro message
+  };
+};
+const signin = (dispatch) => {
+  return ({ email, password }) => {
+    // try to signin
+    // update state if successful
+    // show error message if fails
+  };
+};
+const signout = (dispatch) => {
+  return () => {
+    //somehow sign out
+  };
+};
 
 // export the provider and context for rest of app to use
 export const { Provider, Context } = createDataContext(
   // pass in the three arguments
   authReducer,
   // object with action functions
-  {},
+  { signup, signin, signout },
   // initial state
   { isSignedIn: false }
 );
