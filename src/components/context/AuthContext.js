@@ -2,7 +2,14 @@ import createDataContext from "./CreateDataContext";
 import trackerApi from "../../api/tracker";
 
 const authReducer = (state, action) => {
+  // in a reducer never modify incoming state, return
+  // a brand new object
   switch (action.type) {
+    case "add_error":
+      // return existing state and overwrite the property we want to update
+      // update the errorMessage with whatever came in from action.payload
+      return { ...state, errorMessage: action.payload };
+
     default:
       return state;
   }
@@ -20,7 +27,14 @@ const signup = (dispatch) => {
       const response = await trackerApi.post("/signup", { email, password });
       console.log(response.data);
     } catch (err) {
-      console.log(err.message);
+      // here we want to udate state with the error message so need to dispatch
+      // handle watching for this action in the reducer
+      dispatch({
+        type: "add_error",
+        payload: "Something went wrong with sign up ",
+      });
+
+      // console.log(err.message);
       // gives the actual response
       // console.log(err.response.data);
     }
@@ -46,6 +60,7 @@ export const { Provider, Context } = createDataContext(
   // object with action functions
   { signup, signin, signout },
   // initial state
-  { isSignedIn: false }
+  // adding in errorMessage by default an empty string
+  { isSignedIn: false, errorMessage: "" }
 );
 // now wire this up in App js so that it is at the top of the higherarchy
