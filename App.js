@@ -11,7 +11,8 @@ import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 // import the provider - can re name it here which will be helpfull when we have other providers
 import { Provider as AuthProvider } from "./src/components/context/AuthContext";
-
+// get the setNavigator function
+import { setNavigator } from "./src/navigationRef";
 const switchNavigator = createSwitchNavigator({
   //route configuration object
   // can show both Screens  and other navigators  in here
@@ -36,8 +37,12 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return (
     <AuthProvider>
-      {/* now App goes in here  */}
-      <App />
+      {/* pass in ref prop that recives an arrow function with an arg that is the navigator, pass in setNavigator */}
+      <App
+        ref={(navigator) => {
+          setNavigator(navigator);
+        }}
+      />
     </AuthProvider>
   );
 };
