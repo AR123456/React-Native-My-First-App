@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, Button, Input } from "react-native-elements";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
+import Spacer from "./Spacer";
 // pass in  props we will need for sign up or sign in and error message props object -what we need to pass into auth form for it to behave correctly
 const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
   // need to create state for email and password
@@ -11,7 +12,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
   return (
     <>
       <Spacer>
-        <Text h3>Sign Up for Tracker </Text>
+        <Text h3>{headerText} </Text>
       </Spacer>
 
       <Input
@@ -32,13 +33,16 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
         autoCorrect={false}
         secureTextEntry
       />
-      {state.errorMessage ? (
-        <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+      {errorMessage ? (
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null}
 
       <Spacer>
         {/* on press call back call sign up and pass email and password state  */}
-        <Button title="Sign Up" onPress={() => signup({ email, password })} />
+        <Button
+          title={submitButtonText}
+          onPress={() => onSubmit({ email, password })}
+        />
       </Spacer>
     </>
   );
@@ -46,4 +50,11 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
 
 export default AuthForm;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  errorMessage: {
+    fontSize: 16,
+    color: "red",
+    marginLeft: 15,
+    marginTop: 15,
+  },
+});

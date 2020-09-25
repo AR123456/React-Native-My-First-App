@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Text, Input, Button } from "react-native-elements";
+import { Text } from "react-native-elements";
 import Spacer from "../components/Spacer";
 //import Context from AuthContext
 import { Context as AuthContext } from "../components/context/AuthContext";
@@ -35,12 +35,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginBottom: 170,
-  },
-  errorMessage: {
-    fontSize: 16,
-    color: "red",
-    marginLeft: 15,
-    marginTop: 15,
   },
   link: {
     color: "blue",
