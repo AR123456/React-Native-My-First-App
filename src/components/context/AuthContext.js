@@ -10,24 +10,40 @@ const authReducer = (state, action) => {
       return { ...state, errorMessage: action.payload };
     case "signin":
     case "signup":
-      // the state returned
       return { errorMessage: "", token: action.payload };
+
+    case "clear_error_message":
+      return { ...state, errorMessage: "" };
+    case "signout":
+      return { token: null, errorMessage: "" };
     default:
       return state;
   }
 };
+// when app starts up check for token in async storage, inf not take user so signup/signin workflow
 
+const tryLocalSignin = (dispatch) => async () => {
+  const token = await AsyncStorage.getItem("token");
+  if (token) {
+    dispatch({ type: signin, payload: token });
+    // then navigate to track list
+    navigate("TrackList");
+  } else {
+    // could also be to ("Signup")
+    navigate("loginFlow");
+  }
+};
+
+const clearErrorMessage = (dispatch) => () => {
+  dispatch({ type: "clear_error_message" });
+};
 const signup = (dispatch) => async ({ email, password }) => {
   try {
     const response = await trackerApi.post("/signup", { email, password });
     await AsyncStorage.setItem("token", response.data.token);
 
     dispatch({ type: "signup", payload: response.data.token });
-    // now navigate to main flow - right now the only things that can trigger navigation is stuff in
-    // the switchNavigator const in app.js.  They are the screens that recive the props object that has the navigation
-    //prop inside of it. We need access to that prop
-    // creating navigationRef.js to help with this
-    /// call our navigate function and pass in the string that matches the route from app.js we want to go to
+
     navigate("TrackList");
   } catch (err) {
     dispatch({
@@ -51,16 +67,17 @@ const signin = (dispatch) => async ({ email, password }) => {
     });
   }
 };
-
-const signout = (dispatch) => {
-  return () => {};
+const signout = (dispatch) => async () => {
+  await AsyncStorage.removeItem("token");
+  dispatch({ type: "signout" });
+  navigate("loginFlow");
 };
 
 // export the provider and context for rest of app to use
 export const { Provider, Context } = createDataContext(
   authReducer,
-
-  { signup, signin, signout },
+  // add to action object export
+  { signup, signin, signout, clearErrorMessage, tryLocalSignin },
 
   { token: null, errorMessage: "" }
 );
