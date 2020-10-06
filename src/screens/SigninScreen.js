@@ -10,13 +10,7 @@ const SigninScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/*Show navigation events inside of component with react-navigation navigation events  Pass in call back functions as props - they will be called automaticaly any time user navigates to or away from this component */}
-      <NavigationEvents
-        onWillFocus={clearErrorMessage}
-        // onDidFocus={() => {}}
-        // onWillBlur={clearErrorMessage}
-        // onDidBlur={() => {}}
-      />
+      <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText="Sign In to Your Account"
         errorMessage={state.errorMessage}

@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+// only want the run tryLocalSignin one time so use effect is needed
+
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 //import Context from AuthContext
@@ -7,17 +9,16 @@ import { NavigationEvents } from "react-navigation";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
 const SignupScreen = ({ navigation }) => {
-  // state coming from context- the signup function here initiates request with API
-  const { state, signup, clearErrorMessage } = useContext(AuthContext);
-
+  const { state, signup, clearErrorMessage, tryLocalSignin } = useContext(
+    AuthContext
+  );
+  useEffect(() => {
+    tryLocalSignin;
+    // for it to run just once add empty array
+  }, []);
   return (
     <View style={styles.container}>
-      <NavigationEvents
-        onWillFocus={clearErrorMessage}
-        // onDidFocus={() => {}}
-        // onWillBlur={clearErrorMessage}
-        // onDidBlur={() => {}}
-      />
+      <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText="Sign Up for Tracker"
         errorMessage={state.errorMessage}
