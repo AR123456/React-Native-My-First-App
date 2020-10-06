@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, Button, Input } from "react-native-elements";
 import { StyleSheet } from "react-native";
 import Spacer from "./Spacer";
-
+// pass in  props we will need for sign up or sign in and error message props object -what we need to pass into auth form for it to behave correctly
 const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
   // need to create state for email and password
   // need to send to the back end using axios
@@ -38,6 +38,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
       ) : null}
 
       <Spacer>
+        {/* on press call back call sign up and pass email and password state  */}
         <Button
           title={submitButtonText}
           onPress={() => onSubmit({ email, password })}

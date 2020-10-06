@@ -7,11 +7,17 @@ import { NavigationEvents } from "react-navigation";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
 const SignupScreen = ({ navigation }) => {
+  // state coming from context- the signup function here initiates request with API
   const { state, signup, clearErrorMessage } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
-      <NavigationEvents onWillFocus={clearErrorMessage} />
+      <NavigationEvents
+        onWillFocus={clearErrorMessage}
+        // onDidFocus={() => {}}
+        // onWillBlur={clearErrorMessage}
+        // onDidBlur={() => {}}
+      />
       <AuthForm
         headerText="Sign Up for Tracker"
         errorMessage={state.errorMessage}
