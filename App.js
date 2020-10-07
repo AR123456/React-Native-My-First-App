@@ -9,13 +9,13 @@ import SignupScreen from "./src/screens/SignupScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
-// import the provider - can re name it here which will be helpfull when we have other providers
 import { Provider as AuthProvider } from "./src/components/context/AuthContext";
-// get the setNavigator function
 import { setNavigator } from "./src/navigationRef";
+import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
+//route configuration object
 const switchNavigator = createSwitchNavigator({
-  //route configuration object
-  // can show both Screens  and other navigators  in here
+  // adding default screen when app starts up - add the try local sign in here, show nothig or a spinner
+  ResolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen,
