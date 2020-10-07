@@ -1,5 +1,3 @@
-// only want the run tryLocalSignin one time so use effect is needed
-
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 

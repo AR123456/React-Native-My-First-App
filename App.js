@@ -14,7 +14,6 @@ import { setNavigator } from "./src/navigationRef";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 //route configuration object
 const switchNavigator = createSwitchNavigator({
-  // adding default screen when app starts up - add the try local sign in here, show nothig or a spinner
   ResolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator({
     Signup: SignupScreen,
@@ -30,14 +29,11 @@ const switchNavigator = createSwitchNavigator({
   }),
 });
 
-// now assinging to a variable called App
-// export default createAppContainer(switchNavigator);
 const App = createAppContainer(switchNavigator);
-// our own custome comoponent
+
 export default () => {
   return (
     <AuthProvider>
-      {/* pass in ref prop that recives an arrow function with an arg that is the navigator, pass in setNavigator */}
       <App
         ref={(navigator) => {
           setNavigator(navigator);
