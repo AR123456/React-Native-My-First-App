@@ -4,7 +4,7 @@ import axios from "axios";
 export default axios.create({
   // ngrok URL needs to be refreshed with new base URL every 8 hours
   // open and start up the express API already built in another window
-  baseURL: "https://31c1fefdf497.ngrok.io",
+  baseURL: "https://535911a44914.ngrok.io",
 });
 // open a new bash and run the ngrok command and include the port the API is running on
 // ngrok http 3000
