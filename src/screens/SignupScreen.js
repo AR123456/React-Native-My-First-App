@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 
 //import Context from AuthContext
-import { Context as AuthContext } from "../components/context/AuthContext";
+import { Context as AuthContext } from "../context/AuthContext";
 import { NavigationEvents } from "react-navigation";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";

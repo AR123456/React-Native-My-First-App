@@ -4,7 +4,7 @@ import { Button } from "react-native-elements";
 // to handle the spacing so title dosent display on top of status bar
 import { SafeAreaView } from "react-navigation";
 import Spacer from "../components/Spacer";
-import { Context as AuthContext } from "../components/context/AuthContext";
+import { Context as AuthContext } from "../context/AuthContext";
 
 const AccountScreen = () => {
   const { signout } = useContext(AuthContext);

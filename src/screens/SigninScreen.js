@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
-import { Context } from "../components/context/AuthContext";
+import { Context } from "../context/AuthContext";
 
 const SigninScreen = () => {
   const { state, signin, clearErrorMessage } = useContext(Context);
