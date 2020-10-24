@@ -1,7 +1,10 @@
-// custom reusable hook handleing location 
 
 import {useState, useEffect} from "react";
-import {Accuracy, requestPermissionsAsync, watchPositionAsync} from "expo-location";
+import {
+    Accuracy,
+    requestPermissionsAsync,
+    watchPositionAsync,
+  } from "expo-location";
 
 export default(callback)=>{
     // moving stuff out of TrackCreateScreen
@@ -13,26 +16,23 @@ export default(callback)=>{
           if (!granted) {
             throw new Error("Location permission not granted");
           }
-          await watchPositionAsync(
+          const subscriber = await watchPositionAsync(
             {
               accuracy: Accuracy.BestForNavigation,
               timeInterval: 1000,
               distanceInterval: 10,
             },
             callback
-            // (location) => {
-            //   addLocation(location);
-            // }
           );
         } catch (e) {
           setErr(e);
         }
       };
-
+    
       useEffect(() => {
         startWatching();
       }, []);
-      // returning an array with err inside , TrackCreateScreen needs this return
-      return[err]
-
-}
+    
+      return [err];
+    };
+    
