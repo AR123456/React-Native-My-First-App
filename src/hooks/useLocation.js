@@ -16,6 +16,7 @@ export default(callback)=>{
           if (!granted) {
             throw new Error("Location permission not granted");
           }
+          // on subscriber is a function remove to stop tracking 
           const subscriber = await watchPositionAsync(
             {
               accuracy: Accuracy.BestForNavigation,
