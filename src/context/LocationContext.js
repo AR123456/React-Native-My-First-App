@@ -15,8 +15,6 @@ const locationReducer = (state, action) => {
       return{...state,locations:[...state.locations, action.payload] }
       case "change_name":
       return{...state, name: action.payload}  
-      case "reset":
-        return {...state, name:"", locations:[]}
 
     default:
       return state;
@@ -45,19 +43,10 @@ if(recording){
   dispatch({type:"add_location", payload:location})
 }
 };
-// creating a new action that will clear out the Create track save track form 
-// this will be called inside the async await in the useSaveTrack hook 
-const reset = dispatch => ()=>{
-  dispatch ({type: "reset"});
-}
 
-
-
-
-//////
 export const { Context, Provider } = createDataContext(
   locationReducer,
-  { startRecording, stopRecording, addLocation, changeName, reset  },
+  { startRecording, stopRecording, addLocation,changeName },
   // when recording we are adding to the locations array 
   // keeping track of the name of the track here too - will be sending both to back end API from here so keeping them together
   { name: "", recording: false, locations: [], currentLocation: null }

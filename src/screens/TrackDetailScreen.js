@@ -1,14 +1,10 @@
-import React, {useContext} from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import {Context as TrackContext} from"../context/TrackContext";
 
-const TrackDetailScreen = ({navigation}) => {
-  const {state} = useContext(TrackContext);
-  const _id = navigation.getParam("_id")
-  const track = state.find(t => t._id === _id)
+const TrackDetailScreen = () => {
   return (
     <View>
-      <Text style={{ fontSize: 48 }}> {track.name}</Text>
+      <Text style={{ fontSize: 48 }}>Track Detail</Text>
     </View>
   );
 };
