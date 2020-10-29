@@ -10,18 +10,18 @@ import useLocation from "../hooks/useLocation"
 import TrackForm from "../components/TrackForm"
 
 const TrackCreateScreen = ({ isFocused }) => {
-  const { state,addLocation } = useContext(LocationContext);
-
+  const
+   { state:{recording},
+   addLocation 
+  } = useContext(LocationContext);
   const callback= useCallback(
     (location)=>{
-      // call addLocation and the state object that has recording on it (comming from LocationContext)
-      addLocation(location,state.recording)
+      addLocation(location,recording)
     }
-    // list of variables to watch
-    // rebuild callback when state.recording changes
-  ,[state.recording])
- // add callback as second argument 
- const [err]=useLocation(isFocused,callback)
+
+  ,[recording])
+ 
+ const [err] = useLocation(isFocused || recording, callback);
 
   return (
     <SafeAreaView forceInset={{ top: "always" }}>
