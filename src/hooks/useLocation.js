@@ -19,6 +19,8 @@ export default(shouldTrack,callback)=>{
             throw new Error("Location permission not granted");
           }
           // on subscriber is a function remove to stop tracking 
+          // hey expo tell me when users postion changes 
+          // video 234 start watching can be called more than one time could / would cause crash
           const sub = await watchPositionAsync(
             {
               accuracy: Accuracy.BestForNavigation,
@@ -27,33 +29,27 @@ export default(shouldTrack,callback)=>{
             },
             callback
           );
-          // to stop watching the users location 
-        //   subscriber.remove()
-        // passing sub into setSubscriber- so in state subscriber exists 
+
         setSubscriber(sub);
         } catch (e) {
           setErr(e);
         }
       };
-    
-      useEffect(() => {
+          useEffect(() => {
         if(shouldTrack){
             startWatching()
         }else{
-            // now that subscriver is in state can call remove on it
            subscriber.remove();
            setSubscriber(null);
         }
-
-        startWatching();
-
-        // this could be no arg, empty array or array with stuff in it. 
-        //any time something changes in here useEffect gets called 
-        //stuff in array could be array, an object or a function 
-        // if you do this react dosent look inside the function or object it just 
-        // checks to see if it is the same function or object 
-        
-      }, [shouldTrack]);
+         return()=>{
+          // clean up function 
+          // run subscriber.remove() - it stops listening for updates to user location 
+          if(subscriber){
+            subscriber.remove()
+          }
+         }
+         }, [shouldTrack,callback]);
     
       return [err];
     };
