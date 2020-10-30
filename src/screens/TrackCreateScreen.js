@@ -20,7 +20,7 @@ const TrackCreateScreen = ({ isFocused }) => {
     }
 
   ,[recording])
- 
+ // if we are recording, keep recording on screen change
  const [err] = useLocation(isFocused || recording, callback);
 
   return (
