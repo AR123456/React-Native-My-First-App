@@ -1,7 +1,9 @@
 //create and configure an instance of axios
 import axios from "axios";
+import {AsyncStorage} from "react-native";
 
-export default axios.create({
+
+const instance= axios.create({
   // ngrok URL needs to be refreshed with new base URL every 8 hours
   // open and start up the express API already built in another window
   baseURL: "https://e8c9e0f8a0f4.ngrok.io",
@@ -10,3 +12,22 @@ export default axios.create({
 // ngrok http 3000
 // note the URL for the tracker.js tile in the api working folder of the app
 //https://www.udemy.com/course/the-complete-react-native-and-redux-course/learn/lecture/15708358#overview
+
+instance.interceptors.request.use(
+ async (config)=>{
+    const token =await AsyncStorage.getItem("token")
+    if(token){
+      config.headers.Authorization=`Bearer ${token}`;
+    }
+    return config;
+},
+(err)=>{
+  return Promise.reject(err)
+}
+
+
+);
+
+
+
+export default instance;
