@@ -6,7 +6,7 @@ import {Context as TrackContext} from "../context/TrackContext"
 // pass in the navigaiton prop
 const TrackListScreen = ({ navigation }) => {
   const {state, fetchTracks} = useContext(TrackContext)
-console.log(state);
+// console.log(state);
   return (
     <>
     <NavigationEvents onWillFocus={fetchTracks}/>
@@ -15,12 +15,17 @@ console.log(state);
       data={state}
       keyExtractor={item=>item._id}
       renderItem={({item})=>{
-        return<TouchableOpacity>
+        return( 
+         <TouchableOpacity
+         onPress={()=> 
+        navigation.navigate("TrackDetail",{_id:item._id})
+        }
+         >
           <ListItem
           chevron
           title={item.name}
-          ></ListItem>
-        </TouchableOpacity>
+          />
+        </TouchableOpacity>)
       }}
       ></FlatList>
     </>
