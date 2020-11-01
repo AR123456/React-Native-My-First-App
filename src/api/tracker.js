@@ -6,7 +6,7 @@ import {AsyncStorage} from "react-native";
 const instance= axios.create({
   // ngrok URL needs to be refreshed with new base URL every 8 hours
   // open and start up the express API already built in another window
-  baseURL: "https://e8c9e0f8a0f4.ngrok.io",
+  baseURL: "https://182a47934aa1.ngrok.io",
 });
 // open a new bash and run the ngrok command and include the port the API is running on
 // ngrok http 3000
